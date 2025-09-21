@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>융합철학워크숍 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* 헤더 네비게이션 */
+        .navbar {
+            background: #2c3e50;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #3498db;
+        }
+
+        /* 메인 페이지 스타일 */
+        .main-page {
+            display: block;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            font-weight: 300;
+        }
+
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            border-color: #3498db;
+        }
+
+        .team-icon {
+            width: 80px;
+            height: 80px;
+            background: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .team-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .team-theme {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* 정보 섹션 */
+        .info-section {
+            background: #f8f9fa;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .info-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .info-card p, .info-card ul {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-card li {
+            padding: 0.3rem 0;
+        }
+
+        .info-card strong {
+            color: #2c3e50;
+        }
+
+        /* 팀 페이지 스타일 */
+        .team-page {
+            display: none;
+        }
+
+        .team-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .team-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .team-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .artwork-section {
+            padding: 4rem 0;
+        }
+
+        .artwork-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .artwork-container:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+
+        .artwork-container:nth-child(odd) {
+            animation-delay: 0.4s;
+        }
+
+        .artwork-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .artwork-content {
+            padding: 2rem;
+        }
+
+        .poem-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .author {
+            text-align: right;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        /* 버튼 스타일 */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            margin: 1rem 0;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .teams-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .team-card {
+                padding: 1.5rem;
+            }
+
+            .team-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .artwork-image {
+                height: 250px;
+            }
+
+            .artwork-content {
+                padding: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 푸터 */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showMainPage()">융합철학워크숍</a>
+            <div class="nav-menu">
+                <a href="#teams" class="nav-link">팀 소개</a>
+                <a href="#info" class="nav-link">행사 정보</a>
+                <a href="#contact" class="nav-link">연락처</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 메인 페이지 -->
+    <div id="main" class="main-page">
+        <!-- 히어로 섹션 -->
+        <section class="hero">
+            <div class="container">
+                <h1>융합철학워크숍 2025</h1>
+                <p>철학과 예술의 만남을 통해 새로운 창작 방법론을 탐구하는 혁신적인 워크숍</p>
+            </div>
+        </section>
+
+        <!-- 팀 소개 섹션 -->
+        <section id="teams" class="section">
+            <div class="container">
+                <h2 class="section-title">참가 팀 소개</h2>
+                <div class="teams-grid">
+                    <div class="team-card" onclick="showTeamPage(1)">
+                        <div class="team-icon">1</div>
+                        <div class="team-name">1조 - 평화</div>
+                        <div class="team-theme">조장: 강민석 | 조원: 신지해, 김성환, 임연우, 김민서</div>
+                    </div>
+                    <div class="team-card" onclick="showTeamPage(2)">
+                        <div class="team-icon">2</div>
+                        <div class="team-name">2조 - 갈등</div>
+                        <div class="team-theme">조장: 구교석 | 조원: 하지선, 이한규, 차유온, 김민준</div>
+                    </div>
+                    <div class="team-card" onclick="showTeamPage(3)">
+                        <div class="team-icon">3</div>
+                        <div class="team-name">3조 - 사랑</div>
+                        <div class="team-theme">조장: 최원철 | 조원: 박해리, 김옥창, 황보라, 조민영</div>
+                    </div>
+                    <div class="team-card" onclick="showTeamPage(4)">
+                        <div class="team-icon">4</div>
+                        <div class="team-name">4조 - 혐오</div>
+                        <div class="team-theme">조장: 한진우 | 조원: 문지안, 정혜수, 손채원, 김태훈</div>
+                    </div>
+                    <div class="team-card" onclick="showTeamPage(5)">
+                        <div class="team-icon">5</div>
+                        <div class="team-name">5조 - 무지</div>
+                        <div class="team-theme">조장: 최아영 | 조원: 강태윤, 최지원, 길예술, 김재원</div>
+                    </div>
+                    <div class="team-card" onclick="showTeamPage(6)">
+                        <div class="team-icon">6</div>
+                        <div class="team-name">6조 - 자각</div>
+                        <div class="team-theme">조장: 이지민 | 조원: 전석훈, 박연호, 이다현</div>
+                    </div>
+                    <div class="team-card" onclick="showTeamPage(7)">
+                        <div class="team-icon">7</div>
+                        <div class="team-name">7조 - 기억</div>
+                        <div class="team-theme">조장: 이지현 | 조원: 권세원, 조서연, 정서영, 서진규</div>
+                    </div>
+                    <div class="team-card" onclick="showTeamPage(8)">
+                        <div class="team-icon">8</div>
+                        <div class="team-name">8조 - 망각</div>
+                        <div class="team-theme">조장: 윤준식 | 조원: 이예린, 이수아, 김다영, 채해온</div>
+                    </div>
+                    <div class="team-card" onclick="showTeamPage(9)">
+                        <div class="team-icon">9</div>
+                        <div class="team-name">9조 - 자연</div>
+                        <div class="team-theme">조장: 이창재 | 조원: 곽동규, 김율이, 이고은, 차다연</div>
+                    </div>
+                    <div class="team-card" onclick="showTeamPage(10)">
+                        <div class="team-icon">10</div>
+                        <div class="team-name">10조 - 인간</div>
+                        <div class="team-theme">조장: 이명철 | 조원: 좌예림, 이태훈, 이수인, 이솔</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 행사 정보 섹션 -->
+        <section id="info" class="section info-section">
+            <div class="container">
+                <h2 class="section-title">행사 정보</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>워크숍 개요</h3>
+                        <p>융합철학워크숍은 철학적 사유와 예술적 표현의 경계를 허물고, 새로운 창작 방법론을 모색하는 혁신적인 프로그램입니다. 10개 팀이 각자의 철학적 주제를 선정하여 시각예술, 문학, 퍼포먼스 등 다양한 형태의 작품으로 구현합니다.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>주요 일정</h3>
+                        <ul>
+                            <li><strong>워크숍 시작:</strong> 2025년 9월 1일</li>
+                            <li><strong>중간 발표:</strong> 2025년 10월 15일</li>
+                            <li><strong>최종 발표:</strong> 2025년 11월 20일</li>
+                            <li><strong>전시회 개최:</strong> 2025년 11월 21일 - 30일</li>
+                            <li><strong>장소:</strong> 융합학술관 및 예술관</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h3>참가 방법</h3>
+                        <p>본 워크숍은 사전 선발을 통해 10개 팀을 구성하였으며, 각 팀은 5명의 다학제 구성원으로 이루어져 있습니다. 철학, 예술, 문학, 과학 등 다양한 배경의 참가자들이 협업하여 창의적인 작품을 만들어갑니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 연락처 섹션 -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">연락처</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>주최 기관</h3>
+                        <p><strong>융합철학연구소</strong><br>
+                        서울특별시 강남구 학동로 123<br>
+                        융합학술관 5층</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>문의</h3>
+                        <p><strong>이메일:</strong> info@philosophy-workshop.org<br>
+                        <strong>전화:</strong> 02-1234-5678<br>
+                        <strong>팩스:</strong> 02-1234-5679</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>후원</h3>
+                        <p>한국철학회, 한국예술종합학교<br>
+                        문화체육관광부, 교육부<br>
+                        삼성문화재단</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 팀 페이지 -->
+    <div id="team1" class="team-page">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" class="logo" onclick="showMainPage()">융합철학워크숍</a>
+                <button class="btn btn-secondary" onclick="showMainPage()">← 메인으로</button>
+            </div>
+        </nav>
+
+        <div class="team-header">
+            <div class="container">
+                <h1 class="team-title">1조 - 평화</h1>
+                <p class="team-description">조장: 강민석 | 조원: 신지해, 김성환, 임연우, 김민서<br>
+                '평화'라는 주제를 철학적 사유와 예술적 표현으로 탐구하는 창작 프로젝트입니다.</p>
+            </div>
+        </div>
+
+        <section class="artwork-section">
+            <div class="container">
+                <div class="artwork-container">
+                    <img src="images/1조-강민석.jpg" alt="강민석 작품" class="artwork-image">
+                    <div class="artwork-content">
+                        <div class="poem-text">
+                            고요한 아침 햇살이<br>
+                            마음의 파도를 잠재우고<br>
+                            분노의 불꽃이<br>
+                            사랑의 이슬로 식어간다<br><br>
+                            진정한 평화는<br>
+                            외부에서 찾는 것이 아니라<br>
+                            내 안의 조화에서<br>
+                            시작되는 것이리라
+                        </div>
+                        <div class="author">- 강민석, "내면의 평화"</div>
+                    </div>
+                </div>
+
+                <div class="artwork-container">
+                    <img src="images/1조-신지해.jpg" alt="신지해 작품" class="artwork-image">
+                    <div class="artwork-content">
+                        <div class="poem-text">
+                            서로 다른 마음들이<br>
+                            하나의 목소리로 모이고<br>
+                            이해의 다리가<br>
+                            차이의 강을 건넌다<br><br>
+                            용서는 약함이 아니라<br>
+                            가장 강한 용기이며<br>
+                            평화는 승리가 아니라<br>
+                            함께하는 길이다
+                        </div>
+                        <div class="author">- 신지해, "화해의 미학"</div>
+                    </div>
+                </div>
+
+                <div class="artwork-container">
+                    <img src="images/1조-김성환.jpg" alt="김성환 작품" class="artwork-image">
+                    <div class="artwork-content">
+                        <div class="poem-text">
+                            자연 속에서 배우는<br>
+                            순환의 지혜와<br>
+                            계절의 변화가<br>
+                            보여주는 조화<br><br>
+                            모든 것이 제자리에서<br>
+                            자신의 역할을 하며<br>
+                            큰 질서 속에<br>
+                            평화를 이루어간다
+                        </div>
+                        <div class="author">- 김성환, "자연의 평화"</div>
+                    </div>
+                </div>
+
+                <div class="artwork-container">
+                    <img src="images/1조-임연우.jpg" alt="임연우 작품" class="artwork-image">
+                    <div class="artwork-content">
+                        <div class="poem-text">
+                            요동치던 파도가<br>
+                            잔잔한 물결로 변하고<br>
+                            소음 속에서도<br>
+                            고요함을 찾는다<br><br>
+                            평화는 멈춤이 아니라<br>
+                            흐름 속의 균형이며<br>
+                            움직임 속의<br>
+                            중심을 찾는 것
+                        </div>
+                        <div class="author">- 임연우, "고요한 역동"</div>
+                    </div>
+                </div>
+
+                <div class="artwork-container">
+                    <img src="images/1조-김민서.jpg" alt="김민서 작품" class="artwork-image">
+                    <div class="artwork-content">
+                        <div class="poem-text">
+                            서로 다른 색깔들이<br>
+                            하나의 무지개를 만들고<br>
+                            다양한 목소리들이<br>
+                            아름다운 하모니가 된다<br><br>
+                            차이는 갈등의 씨앗이 아니라<br>
+                            풍요로움의 근원이며<br>
+                            평화는 획일성이 아닌<br>
+                            다양성 속의 조화다
+                        </div>
+                        <div class="author">- 김민서, "다양성과 조화"</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 다른 팀 페이지들 (간소화된 버전) -->
+    <div id="team2" class="team-page">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" class="logo" onclick="showMainPage()">융합철학워크숍</a>
+                <button class="btn btn-secondary" onclick="showMainPage()">← 메인으로</button>
+            </div>
+        </nav>
+        <div class="team-header">
+            <div class="container">
+                <h1 class="team-title">2조 - 갈등</h1>
+                <p class="team-description">조장: 구교석 | 조원: 하지선, 이한규, 차유온, 김민준<br>
+                '갈등'이라는 주제를 철학적 사유와 예술적 표현으로 탐구합니다.</p>
+            </div>
+        </div>
+        <section class="artwork-section">
+            <div class="container">
+                <div class="artwork-container">
+                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=400&fit=crop" alt="내적 갈등" class="artwork-image">
+                    <div class="artwork-content">
+                        <div class="poem-text">
+                            마음속 두 목소리가<br>
+                            끝없이 다투고<br>
+                            이성과 감정 사이에서<br>
+                            길을 잃는다<br><br>
+                            갈등은 고통이지만<br>
+                            성장의 기회이기도 하며<br>
+                            선택의 순간에<br>
+                            진정한 내가 드러난다
+                        </div>
+                        <div class="author">- 구교석, "내면의 대화"</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 나머지 팀 페이지들도 비슷한 구조... -->
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 융합철학워크숍. All rights reserved. | 융합철학연구소</p>
+        </div>
+    </footer>
+
+    <script>
+        function showTeamPage(teamNumber) {
+            // 모든 페이지 숨기기
+            document.getElementById('main').style.display = 'none';
+            const teamPages = document.querySelectorAll('.team-page');
+            teamPages.forEach(page => page.style.display = 'none');
+            
+            // 해당 팀 페이지 보여주기
+            const teamPage = document.getElementById('team' + teamNumber);
+            if (teamPage) {
+                teamPage.style.display = 'block';
+                window.scrollTo(0, 0);
+                
+                // 애니메이션 재시작
+                const artworks = teamPage.querySelectorAll('.artwork-container');
+                artworks.forEach((artwork, index) => {
+                    artwork.style.animation = 'none';
+                    artwork.offsetHeight;
+                    artwork.style.animation = `fadeInUp 0.8s ease ${index * 0.2}s forwards`;
+                });
+            }
+        }
+
+        function showMainPage() {
+            const teamPages = document.querySelectorAll('.team-page');
+            teamPages.forEach(page => page.style.display = 'none');
+            document.getElementById('main').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        // 스무스 스크롤
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 스크롤 시 애니메이션
+        window.addEventListener('scroll', function() {
+            const artworks = document.querySelectorAll('.artwork-container');
+            artworks.forEach(artwork => {
+                const rect = artwork.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (rect.top < windowHeight * 0.8 && rect.bottom > 0) {
+                    artwork.style.opacity = '1';
+                    artwork.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
