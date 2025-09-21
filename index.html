@@ -722,6 +722,20 @@
             window.scrollTo(0, 0);
         }
 
+        function showExhibition() {
+            // 모든 페이지 숨기기
+            document.getElementById('main').style.display = 'none';
+            const teamPages = document.querySelectorAll('.team-page');
+            teamPages.forEach(page => page.style.display = 'none');
+            
+            // 전시회 페이지 보여주기
+            const exhibitionPage = document.getElementById('exhibition');
+            if (exhibitionPage) {
+                exhibitionPage.style.display = 'block';
+                window.scrollTo(0, 0);
+            }
+        }
+
         // 스무스 스크롤
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
