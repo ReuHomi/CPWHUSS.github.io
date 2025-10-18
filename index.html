@@ -244,11 +244,14 @@
             animation-delay: 0.4s;
         }
 
-        .artwork-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
+        /* 약 258라인 근처 */
+.artwork-image {
+    width: 100%;
+    height: auto;      /* 400px 대신 auto로 변경 */
+    /* object-fit: cover;  <-- 이 줄을 삭제하거나, */
+    object-fit: contain; /* <-- 이렇게 변경합니다. */
+}
+
 
         .artwork-content {
             padding: 2rem;
